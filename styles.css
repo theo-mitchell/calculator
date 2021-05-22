@@ -1,0 +1,55 @@
+html, body {
+    margin:0px;
+    height:100%;
+}
+#main {
+    justify-content: center;
+    display:flex;
+    height: 100%;
+}
+
+#calculatorBody {
+    background-color: black;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}  
+
+#calculatorDisplay {
+    background-color: grey;
+    width: 85%;
+    height: 20%;
+    align-self: center;
+}  
+
+#calculatorButtonsArea {
+    background-color: blue;
+    width: 85%;
+    height: 80%;
+    align-self: center;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.buttonRow{
+    align-self: stretch;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    background-color: greenyellow;
+    border: none;
+    color: white;
+    padding: 9%;
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 1.5em;
+    margin: 4px 2px;
+    border-radius: 8px;
+}
