@@ -14,59 +14,81 @@ function divide (number1, number2) {
 	return number1 / number2;
 }
 
-function operate (requestedOperation) {
+function erase (operation){
+    operation.firstNumber = undefined;
+    operation.secondNumber = undefined;
+    operation.operator = undefined;
+}
+
+function operate (operation) {
     let result = null;
-    switch(requestedOperation.operator) {
+    switch(operation.operator) {
         case '+':
-            result = add(requestedOperation.firstNumber, requestedOperation.secondNumber);
+            result = add(operation.firstNumber, operation.secondNumber);
             break;
         case '-':
-            result = subtract(requestedOperation.firstNumber, requestedOperation.secondNumber);
+            result = subtract(operation.firstNumber, operation.secondNumber);
             break;
         case '*':
-            result = multiply(requestedOperation.firstNumber, requestedOperation.secondNumber);
+            result = multiply(operation.firstNumber, operation.secondNumber);
             break;
         case '/':
-            result = divide(requestedOperation.firstNumber, requestedOperation.secondNumber);
+            result = divide(operation.firstNumber, operation.secondNumber);
             break;
         default:
             result = 'Incorrect request, try again';
     } 
-
+    // console.log("this is result!!");
+    // console.log(result);
     return result;
 }
 
-var operation = {
-    firstNumber: 2,
-    secondNumber: 2,
-    operator: '/'  
-};
-
-function populateScreen(value) {
+function processNumber(value) {
     if (value === '+/-') {
         calculatorDisplayText.innerHTML *= -1;
-    } else if (displayValue === '0') {
+    } else if (currentNumberValue === '0') {
         calculatorDisplayText.innerHTML = value;
     } else {
         calculatorDisplayText.innerHTML += value;
     }
-    displayValue = calculatorDisplayText.innerHTML;
+    currentNumberValue = calculatorDisplayText.innerHTML;
+}
+
+function processOperator(operation, operatorValue){
+    if (operatorValue === 'AC') {
+        erase(operation);
+        calculatorDisplayText.innerHTML = '0';
+    } else if (operation.firstNumber === undefined){
+        operation.firstNumber = parseInt(currentNumberValue);
+        operation.operator = operatorValue;        
+    } else {
+        operation.secondNumber = parseInt(currentNumberValue);
+        calculationResult = operate(operation);
+        calculatorDisplayText.innerHTML = calculationResult;
+        operation.firstNumber = calculationResult;
+        operation.secondNumber = undefined;
+    }
+    currentNumberValue = '0';
 }
 
 function processButtonInput(event){
     let pressedButton = event.target;
 
     if (pressedButton.classList.contains("number")) {
-        populateScreen(pressedButton.innerHTML);
+        processNumber(pressedButton.innerHTML);
     } else if (pressedButton.classList.contains("operator")) {
-
+        processOperator(operation, pressedButton.innerHTML);
     }
 }
 
 const calculatorDisplayText = document.querySelector('#calculatorDisplayText');
-let displayValue = calculatorDisplayText.innerHTML;
+let currentNumberValue = calculatorDisplayText.innerHTML;
+
+var operation = {
+    firstNumber: undefined,
+    secondNumber: undefined,
+    operator: undefined  
+};
 
 const numberButtons = document.querySelectorAll('.button');
 numberButtons.forEach(button => button.addEventListener('click', processButtonInput));
-
-// console.log(operate(operation));
