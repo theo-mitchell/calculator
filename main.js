@@ -90,9 +90,8 @@ function processOperator(operation, operatorValue){
     console.log(operation)
 }
 
-function processButtonInput(event){
-    let pressedButton = event.target;
-
+function processButtonInput(pressedButton){
+    
     if (pressedButton.classList.contains("number")) {
         processNumber(operation, pressedButton.innerHTML);
     } else if (pressedButton.classList.contains("operator")) {
@@ -109,17 +108,21 @@ function processButtonInput(event){
 //     console.log("i actually ran");
 // }
 
-// function clickButton(e) {
-//     // const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-//     const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
-//     console.log(e);
-//     console.log(key);
+function pressButton(event) {
 
-//     if (!key) return;
-//     key.classList.add('clickedButton');
-//     // audio.currentTime = 0;
-//     // audio.play();
-// }
+    if (event.type === "keydown") {
+        var key = document.querySelector(`button[data-key="${event.keyCode}"]`);
+    } else {
+        var key = event.target;
+    }
+    console.log(key);
+
+    if (!key) return;
+    // key.classList.add('clickedButton');
+    processButtonInput(key)
+    // audio.currentTime = 0;
+    // audio.play();
+}
 
 const calculatorDisplayText = document.querySelector('#calculatorDisplayText');
 let currentNumberValue = calculatorDisplayText.innerHTML;
@@ -131,6 +134,6 @@ var operation = {
 };
 
 const calculatorButtons = document.querySelectorAll('.button');
-calculatorButtons.forEach(button => button.addEventListener('click', processButtonInput));
+calculatorButtons.forEach(button => button.addEventListener('click', pressButton));
 // calculatorButtons.forEach(button => button.addEventListener('transitionend', removeTransition));
-// window.addEventListener('keydown', clickButton);
+window.addEventListener('keydown', pressButton);
