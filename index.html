@@ -4,44 +4,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles.css" media="screen"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet"> 
 	<title>Calculator</title>
 </head>
 <body>
-	<div id = "main">
-		<div id = "calculatorBody">
-			<div id = "calculatorDisplay">
-				<h1 id="calculatorDisplayText">0</h1>
-			</div>
-			<div id = "calculatorButtonsArea">
-				<div class = "buttonRow">
-					<button class="button operator" data-key="27">AC</button>
-					<button class="button sign">+/-</button>
-					<button class="button operator" data-key="46">%</button>
-					<button class="button operator" data-key="68">÷</button>
-				</div>
-				<div class = "buttonRow">
-					<button class="button number" data-key="49">1</button>
-					<button class="button number" data-key="50">2</button>
-					<button class="button number" data-key="51">3</button>
-					<button class="button operator" data-key="106">×</button>
-				</div>
-				<div class = "buttonRow">
-					<button class="button number" data-key="52">4</button>
-					<button class="button number" data-key="53">5</button>
-					<button class="button number" data-key="54">6</button>
-					<button class="button operator" data-key="109">-</button>
-				</div>
-				<div class = "buttonRow">
-					<button class="button number" data-key="55">7</button>
-					<button class="button number" data-key="56">8</button>
-					<button class="button number" data-key="57">9</button>
-					<button class="button operator" data-key="61">+</button>
-				</div>
-				<div class = "buttonRow">
-					<button class="button number" data-key="48">0</button>
-					<button class="button number" data-key="190">.</button>
-					<button class="button operator" data-key="69">=</button>
-				</div>
+	<div id = "calculatorBody">
+		<div id = "calculatorDisplay">
+			<h1 id="calculatorDisplayText">0</h1>
+		</div>
+		<div id = "calculatorButtonsArea">			
+				<button class="button operator" data-key="27">AC</button>
+				<button class="button sign">+/-</button>
+				<button class="button operator" data-key="46">%</button>
+				<button class="button operator" data-key="68">÷</button>
+				<button class="button number" data-key="49">1</button>
+				<button class="button number" data-key="50">2</button>
+				<button class="button number" data-key="51">3</button>
+				<button class="button operator" data-key="106">×</button>
+				<button class="button number" data-key="52">4</button>
+				<button class="button number" data-key="53">5</button>
+				<button class="button number" data-key="54">6</button>
+				<button class="button operator" data-key="109">-</button>
+				<button class="button number" data-key="55">7</button>
+				<button class="button number" data-key="56">8</button>
+				<button class="button number" data-key="57">9</button>
+				<button class="button operator" data-key="61">+</button>
+				<button id = "zero" class="button number" data-key="48">0</button>
+				<button class="button number" data-key="190">.</button>
+				<button class="button operator" data-key="69">=</button>
 			</div>
 		</div>
 	</div>
