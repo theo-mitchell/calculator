@@ -49,7 +49,7 @@ function processNumber(operation, value) {
     if (operation.operator === '=') {
         calculatorDisplayText.innerHTML = value;
         operation.operator = undefined;
-    } else if (currentNumberValue === '0') {
+    } else if (currentNumberValue === 'reset') {
         calculatorDisplayText.innerHTML = value;
     } else {
         calculatorDisplayText.innerHTML += value;
@@ -64,7 +64,7 @@ function processOperator(operation, operatorValue){
         case 'AC':
             erase(operation);
             calculatorDisplayText.innerHTML = '0';
-            currentNumberValue = '0';
+            currentNumberValue = 'reset';
             break;
         case '=':
             if (operation.firstNumber === undefined || operation.operator === undefined){
@@ -85,7 +85,7 @@ function processOperator(operation, operatorValue){
                 }
             }
             operation.operator = operatorValue;
-            currentNumberValue = '0'; 
+            currentNumberValue = 'reset'; 
     }
     console.log(operation)
 }
@@ -101,13 +101,6 @@ function processButtonInput(pressedButton){
     }
 }
 
-// function removeTransition(e) {
-//     console.log("i am remove transition");
-//     if (e.propertyName !== 'transform') return;
-//     e.target.classList.remove('playing');
-//     console.log("i actually ran");
-// }
-
 function pressButton(event) {
 
     if (event.type === "keydown") {
@@ -115,17 +108,16 @@ function pressButton(event) {
     } else {
         var key = event.target;
     }
-    console.log(key);
+    // console.log(key);
 
     if (!key) return;
-    // key.classList.add('clickedButton');
-    processButtonInput(key)
+    processButtonInput(key);
     // audio.currentTime = 0;
     // audio.play();
 }
 
-const calculatorDisplayText = document.querySelector('#calculatorDisplayText');
-let currentNumberValue = calculatorDisplayText.innerHTML;
+const calculatorDisplayText = document.querySelector('#calculatorDisplay');
+let currentNumberValue = 'reset';
 
 var operation = {
     firstNumber: undefined,

@@ -8,12 +8,16 @@ body {
     display:flex;
     align-items: center;
     justify-content: center;
+    color: #F0F8FF;
+    background-color: #F0F8FF;
 }
 
 #calculatorBody {
     background-color: rgb(45, 45, 45);
     min-width: 30rem;
     min-height: 35rem;
+    max-width: 30rem;
+    max-height: 35rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -21,30 +25,27 @@ body {
 }  
 
 #calculatorDisplay {
-    background-color: rgb(173, 173, 173);
+    background-color: #c0c0c0;
+    padding:1%;
     width: 90%;
+    max-width: 90%;
     height: 8rem;
-
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    overflow: auto;
+    font-size: 4.5em;
 } 
 
-#calculatorDisplayText {
-    font-size: 4.5em;
-}
-
 #calculatorButtonsArea {
-    background-color: blue;
-    width: 85%;
-    /* height: 80%; */
+    width: 90%;
+    flex-grow: 0.6;
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
 
 .button {
-    background-color: greenyellow;
+    background-color: #00FF00;
     border: none;
     color: white;
     padding: 9%;
@@ -56,12 +57,14 @@ body {
     border-radius: 8px;
 }
 
+.operator, .sign {
+    background-color: #FF851B;
+}
+
+.button:active  {
+    opacity: 0.6
+}
+
 #zero {
     grid-column: span 2;
 }
-
-/* .clickedButton {
-    transform: scale(1.1);
-    border-color: #ffc600;
-    background-color: white;
-  } */
