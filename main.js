@@ -25,7 +25,7 @@ function erase (operation){
 
 function operate (operation) {
     let result = null;
-    console.log(operation)
+
     switch(operation.operator) {
         case '+':
             result = add(operation.firstNumber, operation.secondNumber);
@@ -45,7 +45,14 @@ function operate (operation) {
     return result;
 }
 
-function processNumber(operation, value) {
+function processNumber(operation, pressedButton) {
+    let value = pressedButton.innerHTML;
+    
+    // Disable decimal, so that no more then one can be entered during entry of the same number. 
+    if (value === '.'){
+        decimalButton.classList.remove('number');
+    }
+
     if (operation.operator === '=') {
         calculatorDisplayText.innerHTML = value;
         operation.operator = undefined;
@@ -59,6 +66,10 @@ function processNumber(operation, value) {
 
 function processOperator(operation, operatorValue){
     currentNumberValue = calculatorDisplayText.innerHTML;
+
+    // Reenable decimal since an operator was pressed and user has to be working with a diffrent number.
+    // This does nothing if the class is already in the classlist, so no need for if checks.
+    decimalButton.classList.add('number');
 
     switch(operatorValue) {
         case 'AC':
@@ -87,13 +98,12 @@ function processOperator(operation, operatorValue){
             operation.operator = operatorValue;
             currentNumberValue = 'reset'; 
     }
-    console.log(operation)
+    console.log(operation);
 }
 
 function processButtonInput(pressedButton){
-    
     if (pressedButton.classList.contains("number")) {
-        processNumber(operation, pressedButton.innerHTML);
+        processNumber(operation, pressedButton);
     } else if (pressedButton.classList.contains("operator")) {
         processOperator(operation, pressedButton.innerHTML);
     } else if (pressedButton.classList.contains("sign")) {
@@ -125,6 +135,7 @@ var operation = {
     operator: undefined  
 };
 
+const decimalButton = document.querySelector(`button[data-key="${190}"]`);;
 const calculatorButtons = document.querySelectorAll('.button');
 calculatorButtons.forEach(button => button.addEventListener('click', pressButton));
 // calculatorButtons.forEach(button => button.addEventListener('transitionend', removeTransition));
