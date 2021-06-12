@@ -1,4 +1,4 @@
-# Calculator
+# Calculator: https://theom95.github.io/calculator/
 
 ### This is a simple calculator built using pure HTML/CSS/JavaScript
 
